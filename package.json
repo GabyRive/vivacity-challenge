@@ -1,0 +1,24 @@
+{
+  "name": "vivacity-challenge",
+  "version": "1.0.0",
+  "description": "\"This is a mapping and data visualization challenge for VivaCity\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabyRive/vivacity-challenge.git"
+  },
+  "author": "Gabriela Rivera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabyRive/vivacity-challenge/issues"
+  },
+  "homepage": "https://github.com/GabyRive/vivacity-challenge#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mapbox-gl": "^0.38.0"
+  }
+}
