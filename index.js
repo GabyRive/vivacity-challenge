@@ -7,4 +7,5 @@ app.use('/', express.static(__dirname + '/public'));
 
 app.listen(port, function(){
   console.log('VivaCity challenge is listening on port 4000!');
+
 });

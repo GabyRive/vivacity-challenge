@@ -1,11 +1,17 @@
-/*body {
+body {
     margin: 0;
     padding: 0;
 }
 
 #map {
     position: absolute;
-    top: 0;
+    top: 65px;
     bottom: 0;
     width: 100%;
-}*/
+}
+
+#hello-vivacity{
+  font-size: 30px;
+  left: 30px;
+
+}
