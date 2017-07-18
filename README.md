@@ -1,2 +1,2 @@
 # vivacity-challenge
-"This is a mapping and data visualization code challenge for VivaCity"
+"This is the attempt of using d3 for data representation and Mapbox for mapping."
