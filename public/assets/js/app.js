@@ -1,112 +1,112 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FieXJpdmUiLCJhIjoiY2o1NWZxbDJ5MGRyZzJ5bGl1NTR0ZmhwZyJ9.D_aDcoOJNaSnA33urPQurQ';
-var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v9',
-  center: [ -66.047739, 18.407143],
-  zoom: 17
 
+var map = new mapboxgl.Map({
+  style: 'mapbox://styles/gabyrive/cj57cxgaz3y2w2spfr2c01vrb',
+  container: 'map',
+  center: [-66.048109, 18.406673],
+  zoom: 17,
+  pitch: 45,
+  bearing: -17.6
 });
 
-map.on('load', () => {
-
-  map.addSource('escuelaDerecho', {
-    type: 'geojson',
-    data: {
-      'type': 'FeatureCollection',
-      'features': [{
-        'type': 'Feature',
-        'properties': {},
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': [
-            [-66.0472646355629,
-              18.407186615054666
-            ],
-            [-66.04729145765305,
-              18.40721715478289
-            ],
-            [-66.04727536439896,
-              18.407234969621857
-            ],
-            [-66.04798078536987,
-              18.407690519877807
-            ],
-            [-66.04815512895584,
-              18.40746147241375
-            ],
-            [-66.04779839515686,
-              18.407227334691108
-            ],
-            [-66.04802638292313,
-              18.406924482164495
-            ],
-            [-66.04814976453781,
-              18.40700083159117
-            ],
-            [-66.04834288358688,
-              18.40675396832267
-            ],
-            [-66.04814440011977,
-              18.4066190841192
-            ],
-            [-66.04810684919357,
-              18.40666998383104
-            ],
-            [-66.04792177677155,
-              18.40655036948436
-            ],
-            [-66.04798346757887,
-              18.40646638489342
-            ],
-            [-66.0477340221405,
-              18.40629841558862
-            ],
-            [-66.04750335216522,
-              18.406613994147204
-            ],
-            [-66.04768842458725,
-              18.406725973496673
-            ],
-            [-66.04770183563231,
-              18.406708158605035
-            ],
-            [-66.0477340221405,
-              18.406748878354644
-            ],
-            [-66.0475194454193,
-              18.40704918621056
-            ],
-            [-66.04754626750946,
-              18.407067001066903
-            ],
-            [-66.04748725891113,
-              18.40714589540858
-            ],
-            [-66.04738801717758,
-              18.407084815921415
-            ],
-            [-66.04736119508743,
-              18.407115355667706
-            ],
-            [-66.04731559753418,
-              18.40711026571037
-            ],
-            [-66.0472646355629,
-              18.407186615054666
-            ]
-          ]
-        }
-      }]
-    }
+// the 'building' layer in the mapbox-streets vector source contains building-height
+// data from OpenStreetMap.
+map.on('load', function() {
+  map.addSource("states", {
+    "type": "geojson",
+    "data": "/assets/js/escuela-derecho.geojson"
   });
 
   map.addLayer({
-    id: 'building-3d',
-    source: 'escuelaDerecho',
-    type: 'fill-extrusion',
-    paint: {
-      'fill-extrusion-color': 'rgb(204, 157, 201)'
-    },
+    'id': '3d-buildings',
+    'source': 'composite',
+    'source-layer': 'building',
+    'filter': ['==', 'extrude', 'true'],
+    'type': 'fill-extrusion',
+    'minzoom': 15,
+    'paint': {
+      'fill-extrusion-color': '#c399bb',
+      'fill-extrusion-height': {
+        'type': 'identity',
+        'property': 'height'
+      },
+      'fill-extrusion-base': {
+        'type': 'identity',
+        'property': 'min_height'
+      },
+      'fill-extrusion-opacity': .6
+    }
   });
 
+
+  // map.addLayer({
+  //   'id': 'building',
+  //   'type': 'symbol',
+  //   'souce': {
+  //     'type': 'geojson',
+  //     'data': {
+  //       'type': 'FeatureCollection',
+  //       'features': [{
+  //         'type': 'Feature',
+  //         'properties': {
+  //           'description': '<strong>Escuela de Derecho, Recinto de Rio Piedras</strong><p>The University of Puerto Rico School of Law is a law school in Puerto Rico. It is one of the professional graduate schools of University of Puerto Rico, Río Piedras Campus and the only law school in the University of Puerto Rico System.</p>',
+  //           'icon': 'marker'
+  //         },
+  //         'geometry': {
+  //           'type': 'Point',
+  //           'coordinates': [-66.048109, 18.406673]
+  //         }
+  //       }]
+  //     }
+  //   }
+  // });
+
+
+
+  // var popup = new mapboxgl.Popup({
+  //   closeButton: false,
+  //   closeOnClick: false
+  // });
+  //
+  // map.on('mouseenter', 'building', function(e) {
+  //   map.getCanvas().style.cursor = 'pointer';
+  //   popup.setLngLat(e.features[0].geometry.coordinates)
+  //     .setHTML(e.features[0].properties.description)
+  //     .addTo(map);
+  // });
+  //
+  // map.on('mouseleave', 'building', function() {
+  //   map.getCanvas().style.cursor = '';
+  //   popup.remove();
+  // });
 });
+
+
+// var map = new mapboxgl.Map({
+//   container: 'map',
+//   style: 'mapbox://styles/mapbox/light-v9',
+//   pitch: 45,
+//   bearing: -17.6,
+//   center: [ -66.047739, 18.407143],
+//   zoom: 17
+//
+// });
+//
+//
+//   map.addLayer({
+//     id: 'building-3d',
+//     source: 'escuelaDerecho',
+//     type: 'fill-extrusion',
+//     paint: {
+//       'fill-extrusion-base': {
+//         'property': 'min_height',
+//         'type': 'identity'
+//       },
+//       'fill-extrusion-height': {
+//         'property': 'height',
+//         'type': 'identity'
+//       },
+//       'fill-extrusion-color': 'rgb(204, 157, 201)'
+//     }
+//   });
+// });

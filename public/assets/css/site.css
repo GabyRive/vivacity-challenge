@@ -5,13 +5,33 @@ body {
 
 #map {
     position: absolute;
-    top: 65px;
-    bottom: 0;
-    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    width: 75%;
+    left: 350px;
 }
 
 #hello-vivacity{
   font-size: 30px;
   left: 30px;
+}
 
+.mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+#main-container{
+  position: absolute;
+  background-color: white;
+  top: 0px;
+  height: 100%;
+  width: 400px;
+
+}
+
+circle {
+  fill: none;
+  /*stroke: rgb(237, 4, 179);*/
+  stroke-width: 2px;
 }
